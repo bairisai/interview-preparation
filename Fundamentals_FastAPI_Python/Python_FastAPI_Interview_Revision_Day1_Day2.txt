@@ -1,0 +1,53 @@
+Python + FastAPI Interview Revision (Day 1 & 2)
+
+Q1. What is name in Python? A. name is a special built-in variable
+automatically assigned to every module. It indicates whether the module
+is executed directly or imported.
+
+Q2. When is name == “main”? A. When the Python file is executed
+directly. If imported, name is the module’s name.
+
+Q3. Why use if name == “main”? A. To separate executable/test code from
+reusable module code. The guarded code does not run when the module is
+imported.
+
+Q4. What is the difference between .pyc and sys.modules? A. - .pyc:
+Stores compiled bytecode on disk (inside pycache) to avoid
+recompilation. - sys.modules: Stores loaded module objects in memory to
+avoid re-executing modules.
+
+Q5. Why isn’t a module executed twice if imported twice? A. Python first
+checks sys.modules. If the module is already loaded, it returns the
+cached module object instead of executing the file again.
+
+Q6. What happens when a module is imported? A. 1. Check sys.modules. 2.
+If absent, compile/load bytecode. 3. Execute the module. 4. Create a
+module object. 5. Cache it in sys.modules. 6. Return the module object.
+
+Q7. What is FastAPI? A. A modern, high-performance Python web framework
+for building APIs with automatic validation, JSON serialization, OpenAPI
+documentation, dependency injection, and async support.
+
+Q8. What does app = FastAPI() do? A. It creates the FastAPI application
+object responsible for routing, request handling, middleware, OpenAPI
+docs, startup/shutdown events, and response generation.
+
+Q9. What is a health check endpoint? A. An endpoint (commonly GET
+/health) used by monitoring systems, Docker, Kubernetes, and load
+balancers to verify that the application is running.
+
+Q10. What happens when GET /health is called? A. Browser/Client →
+Uvicorn → FastAPI application → Routing table → health_check() function
+→ Python dictionary → FastAPI serializes it to JSON → HTTP response.
+
+Q11. What does @app.get(“/health”) do? A. It is a decorator that
+registers the function as the handler for the /health route during
+application startup.
+
+Q12. Why didn’t we create a HealthService? A. Because there is no
+business logic yet. A service layer should be introduced only when it
+solves a real problem, not preemptively.
+
+Core Principles - Every file, class, and abstraction must justify its
+existence. - Build architecture only when requirements demand it. -
+Never write code you cannot explain.
