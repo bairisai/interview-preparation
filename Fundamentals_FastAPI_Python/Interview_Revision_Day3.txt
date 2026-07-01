@@ -1,0 +1,41 @@
+Python + FastAPI Interview Revision (Day 3)
+
+Q1. What problem does APIRouter solve? A. APIRouter organizes endpoints
+by feature, keeping main.py clean and improving readability,
+maintainability, and team collaboration.
+
+Q2. What should be the responsibility of main.py? A. - Create the
+FastAPI application. - Configure application-wide settings. - Include
+routers. - Avoid endpoint implementations and business logic.
+
+Q3. Why is APIRouter a class instead of a function? A. It maintains
+state (prefixes, tags, dependencies, routes) and behavior (get(),
+post(), etc.). Classes encapsulate both state and behavior.
+
+Q4. What is Dependency Injection? A. A design pattern where a component
+receives its dependencies instead of creating them itself, reducing
+coupling and improving maintainability and testability.
+
+Q5. How does FastAPI implement Dependency Injection? A. Using Depends(),
+FastAPI resolves dependencies (including nested ones) before executing
+the endpoint and injects the resolved objects.
+
+Q6. Why is creating Database() inside every endpoint poor design? A. It
+tightly couples endpoints to a specific implementation, duplicates code,
+and makes maintenance harder.
+
+Q7. How does Dependency Injection help when switching databases? A. Only
+the dependency provider changes. Endpoints remain unchanged because they
+depend on an injected object rather than a concrete implementation.
+
+Q8. Why use logging.getLogger(name)? A. It creates a named logger,
+making it easy to identify which module generated a log message.
+
+Q9. What are the logging levels? A. - DEBUG: Development details. -
+INFO: Normal application events. - WARNING: Recoverable issues. - ERROR:
+Operation failures. - CRITICAL: Application cannot continue.
+
+Key Engineering Principles - Every file must justify its existence. -
+Architecture grows with requirements. - Separate responsibilities. -
+Prefer low coupling and high cohesion. - Program against dependencies,
+not implementations.
