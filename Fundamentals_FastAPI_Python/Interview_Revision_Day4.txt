@@ -1,0 +1,65 @@
+Python + FastAPI Interview Revision (Day 4)
+
+Q1. What is an API Contract? A. An API contract is an agreement between
+the client and backend defining the structure of requests and responses.
+
+Q2. Why do we create Request Models? A. They define incoming data,
+validate requests, improve readability, enable reuse, and represent the
+API contract.
+
+Q3. Why keep request models separate from routers? A. Routers define
+endpoints; models define data contracts. This follows the Single
+Responsibility Principle and improves reuse.
+
+Q4. Why reuse RegisterRequest instead of copying it? A. It follows the
+DRY principle, keeps validation consistent, and simplifies maintenance.
+
+Q5. Type Validation vs Business Validation? A. - Type Validation: Checks
+types/specialized types (int, str, EmailStr, UUID). - Business
+Validation: Checks application rules (password policy, username
+uniqueness, age limits).
+
+Q6. Does ‘email: str’ validate email format? A. No. It only checks that
+the value is a string. Use EmailStr for email validation.
+
+Q7. What is Field() used for? A. Field defines validation constraints
+and metadata such as min_length, max_length, descriptions, and default
+values.
+
+Q8. What does Field(…) mean? A. The field is required.
+
+Q9. Why doesn’t ‘username: str’ reject an empty string? A. Because ’’ is
+still a valid string. Additional constraints like min_length must be
+specified.
+
+Q10. Why are password rules business rules? A. Different organizations
+define different password policies, so the application—not
+Python—defines them.
+
+Q11. Why does FastAPI return HTTP 422 automatically? A. FastAPI builds
+and validates the Pydantic model before calling the endpoint. Validation
+failures are automatically converted into a 422 response.
+
+Q12. Does the endpoint execute when validation fails? A. No. The
+endpoint is never called.
+
+Q13. Why was the extra ‘age’ field ignored? A. By default, Pydantic
+ignores undeclared fields and only creates the model with defined
+fields.
+
+Q14. Why does Pydantic ignore extra fields by default? A. It improves
+compatibility between clients and servers while allowing stricter
+behavior through configuration.
+
+Q15. Why does Pydantic return an object instead of a dictionary? A.
+Objects provide structure, encapsulate validation, support type hints,
+improve IDE support, and model business concepts more effectively.
+
+Q16. Why are Request Models and Response Models different? A. Request
+models describe client input; response models expose only the required
+output and hide sensitive information.
+
+Key Takeaways - Never trust client input. - Validation is the backend’s
+responsibility. - Pydantic validates requests before business logic
+executes. - Request models define API contracts. - Follow SRP and DRY. -
+Objects represent business concepts better than raw dictionaries.
