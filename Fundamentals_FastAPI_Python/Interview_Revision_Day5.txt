@@ -1,0 +1,47 @@
+Python + FastAPI Interview Revision (Day 5)
+
+Q1. Why are raw dictionaries discouraged as API responses in enterprise
+applications? A. Raw dictionaries do not enforce a response contract.
+Different developers may return different response structures, making
+APIs inconsistent.
+
+Q2. What is a Response Model? A. A Pydantic model that defines,
+validates, filters, and documents the API response.
+
+Q3. What is the purpose of response_model in FastAPI? A. It defines the
+response contract, validates and serializes responses, filters extra
+fields, and generates OpenAPI documentation.
+
+Q4. How do Response Models improve security? A. They prevent accidental
+exposure of sensitive fields by returning only the fields defined in the
+model.
+
+Q5. What problem do Response Models solve for frontend developers? A.
+They guarantee a consistent response structure across the API.
+
+Q6. What is serialization? A. Converting a Python object into JSON for
+transmission.
+
+Q7. What is deserialization? A. Converting incoming JSON into Python
+objects.
+
+Q8. Describe the request lifecycle. A. Client JSON → Deserialization →
+Request Validation → Router → Service → Response Model → Serialization →
+Client.
+
+Q9. Why should routers delegate work to services? A. Routers handle HTTP
+communication; services contain business logic, improving
+maintainability and reusability.
+
+Q10. Why pass the entire RegisterRequest object to the service? A. It
+keeps the method signature stable and makes the service easier to extend
+when new fields are added.
+
+Q11. What is an API contract? A. A defined agreement describing the
+structure of requests and responses.
+
+Key Takeaways - Responses need contracts just like requests. -
+response_model validates, filters, serializes, and documents
+responses. - Routers coordinate; services implement business logic. -
+Serialization converts Python objects to JSON; deserialization converts
+JSON to Python objects.
